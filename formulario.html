@@ -81,15 +81,11 @@
 </head>
 <body>
     <h1>Formulário para site de Imóveis</h1>
-<form action="/submit" method="POST">
 
-    <div class="grupo-cep">
-        <label for="cep">CEP*</label>
-        <input type="text" id="cep" name="cep" placeholder="Digite o cep" 
-        required oninvalid="this.setCustomValidity('Por favor, preencha o campo Nome.')" 
-        oninput="this.setCustomValidity('')"
-        maxlength="9">
-    </div>
+    <div class="mb-3">
+        <label for="text" class="cep">CEP*</label>
+        <input type="cep" class="cep" id="exampleFormControlInput1" placeholder="Escreva seu cep">
+      </div>
 
     <div class="grupo-cep">
         <label for="naoseicep">Não sei o CEP</label>
