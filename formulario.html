@@ -6,14 +6,40 @@
     <title>Formulario Imoveis</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: helvetica-w01-roman, helvetica-w02-roman, helvetica-lt-w10-roman, sans-serif;
+            margin-bottom: 50px;
         }
 
-        .cep {
+        form {
             padding: 0;
             border-color: black;
             border-radius: 5px;
             font-size: 12px;
+            margin-left: 20px;
+            padding: 20px;
+            width: 25%;
+        }
+
+        .cep label {
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .naoseicep label {
+            margin-left: 20px;
+        }
+
+        .naoseicep input[type="checkbox"] {
+            margin-left: 5px;
+        }
+
+        .tipoimovel {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: block;
         }
 
         input[type="text"] {
@@ -24,14 +50,61 @@
             font-size: 16px;
         }
 
+        input[type="text"]:hover {
+            background-color: #ccc;
+            color: #aba7a7;
+        }
+
     </style>
+    <script>
+        function formaInput (valeu) {
+            //Remove todos os caracteres que não são números
+            value = value.replace(/\D/g, '');
+        }
+
+            //Adiciona o hífen após 5 caracteres, se houver
+            if (value.length > 5) {
+                value = value.slice (0,5) + '-' + value.slice(5);
+            }
+
+            return value
+
+        document.addEventListener('DOMContentLoaded', function (){
+            var input = document.getElementById('cep');
+
+            input.addEventListener('input', function (){
+                input.value = formatInput(input.value);
+            });
+        });    
+
+    </script>
 </head>
 <body>
     <h1>Formulário para site de Imóveis</h1>
+<form action="/submit" method="POST">
 
-    < form class="cep">
-</div>
-<h3>CEP*</h3>
-<input type="text" name="cep" placeholder="Digite o cep">
+    <div class="grupo-cep">
+        <label for="cep">CEP*</label>
+        <input type="text" id="cep" name="cep" placeholder="Digite o cep" 
+        required oninvalid="this.setCustomValidity('Por favor, preencha o campo Nome.')" 
+        oninput="this.setCustomValidity('')"
+        maxlength="9">
+    </div>
+
+    <div class="grupo-cep">
+        <label for="naoseicep">Não sei o CEP</label>
+        <input type="checkbox" id="naoseicep" name="naoseicep" value="cep">
+    </div>
+
+    <div class="tipoimovel">
+        <label for="tipoimovel">Tipo de Imóvel*</label>
+        <input type="radio" id="apartamento" name="apartamento" value="apartamento" required>
+        <label for="apartamento">Apartamento</label>
+
+        <input type="radio" id="casa" name="casa" value="casa" required>
+        <label for="casa">Casa</label>
+    </div>
+
+</form>
 </body>
 </html>
